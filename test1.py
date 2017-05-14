@@ -2,7 +2,7 @@
 
 from selenium import webdriver
 
-# Firefox 46 is supported by Selenium 2.5
+# Firefox 46 is supported by Selenium 2.5 ##
 driver = webdriver.Firefox()
 
 driver.get('https://www.google.com/')
