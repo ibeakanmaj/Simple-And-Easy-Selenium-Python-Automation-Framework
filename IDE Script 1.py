@@ -6,6 +6,8 @@ from selenium.webdriver.support.ui import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import NoAlertPresentException
 import unittest, time, re
+from POM import Login
+
 
 class IDEScript1(unittest.TestCase):
     def setUp(self):
@@ -18,11 +20,22 @@ class IDEScript1(unittest.TestCase):
     def test_i_d_e_script1(self):
         driver = self.driver
         driver.get(self.base_url + "/")
-        driver.find_element_by_name("userName").clear()
-        driver.find_element_by_name("userName").send_keys("mercury")
-        driver.find_element_by_name("password").clear()
-        driver.find_element_by_name("password").send_keys("mercury")
-        driver.find_element_by_name("login").click()
+
+        login = Login(driver)
+
+        login.UserName("mercury")
+        login.Password("mercury")
+        login.SignIn()
+
+
+
+        # driver.find_element_by_name("userName").clear()
+        # driver.find_element_by_name("userName").send_keys("mercury")
+        # driver.find_element_by_name("password").clear()
+        # driver.find_element_by_name("password").send_keys("mercury")
+        # driver.find_element_by_name("login").click()
+
+
         # ERROR: Caught exception [Error: Dom locators are not implemented yet!]
         driver.find_element_by_name("tripType").click()
         Select(driver.find_element_by_name("passCount")).select_by_visible_text("2")
@@ -82,3 +95,9 @@ class IDEScript1(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class login():
+
+    def UserName(self, user_name):
+        print("Enter user name in username field")
